@@ -6,8 +6,9 @@
     <title>Yonsei Internet Programing Assignment 1</title>
 </head>
 <body>
-    <h1>안녕하세요 전현우입니다.</h1>
-    <div>
+    <div class="main">
+        <h1 class="title">안녕하세요 전현우입니다.</h1>
+    <div class="explanation">
         <p>아래 사이트에서 영화에 대한 자세한 정보를 찾을 수 있습니다.</p>
            <ul>
             <li>
@@ -52,5 +53,39 @@
             </tr>
         </tbody>
     </table>
+    </div>
 </body>
+<style>
+    body {
+        width: 100%;
+        min-height: 100%;
+        background-color: oklch(0.985 0 0);
+        display: flex;
+        flex-direction: column;
+    }
+    .title {
+        font-size: xx-large;
+        font-weight: 700;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .explanation{
+        flex-direction: column;
+        display: flex;
+    }
+    .main{
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 56rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding:2rem;
+    }
+    table{
+        border-width: 1px;
+        border-color: black;
+        border: black;
+    }
+</style>
 </html>
