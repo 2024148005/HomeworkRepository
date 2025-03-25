@@ -23,7 +23,7 @@
         <caption>영화 TOP 3</caption>
         <thead>
             <tr>
-                <th rowspan="2">순위</th>
+                <th rowspan="2" class="card">순위</th>
                 <th colspan="4">영화 정보</th>
             </tr>
             <tr>
@@ -82,10 +82,29 @@
         flex-direction: column;
         padding:2rem;
     }
-    table{
-        border-width: 1px;
+    caption{
+        padding:1rem;
+        font-size: x-large;
+        font-weight: 600;
+    }
+    th {
+        border: 5px;
+        border-width: 2px;
         border-color: black;
-        border: black;
+        background-color: white;
+        padding:1rem;
+        border-radius: 0.5rem;
+        box-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    }
+    td {
+        padding:1rem;
+        background-color: white;
+        border-radius: 0.5rem;
+        text-align: center;
+        box-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    }
+    table{
+        border-collapse: separate;
     }
 </style>
 </html>
