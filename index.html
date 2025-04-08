@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yonsei Internet Programing Assignment 1</title>
+</head>
+<body>
+    <div class="main">
+        <h1 class="title">안녕하세요 전현우입니다.</h1>
+    <div class="explanation">
+        <p>아래 사이트에서 영화에 대한 자세한 정보를 찾을 수 있습니다.</p>
+           <ul>
+            <li>
+                <a href="https://www.imdb.com" target="_blank">IMDB</a>
+            </li>
+            <li>
+                <a href="https://www.rottentomatoes.com" target="_blank">로튼 토마토</a>
+            </li>
+           </ul>
+    </div>
+    <table>
+        <caption>영화 TOP 3</caption>
+        <thead>
+            <tr>
+                <th rowspan="2" class="card">순위</th>
+                <th colspan="4">영화 정보</th>
+            </tr>
+            <tr>
+                <th>제목</th>
+                <th>포스터</th>
+                <th colspan="2">명대사</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Beauty and the Beast</td>
+                <td><img alt="Beauth and the Beast Poster" src="../images/beauty-and-the-beast.jpg" width="200" height="300"/></td>
+                <td>Be our guest.</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>슈퍼배드 3</td>
+                <td><img alt="Despicable me 3 Poster" src="../images/despicable-me-3.jpg" width="200" height="300"/></td>
+                <td>Oh brother.</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>스타 워즈: 깨어난 포스</td>
+                <td><img alt="Star Wars Poster" src="../images/star-wars.webp" width="200" height="300"/></td>
+                <td>Every generation has a story.</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</body>
+<style>
+    body {
+        width: 100%;
+        min-height: 100%;
+        background-color: oklch(0.985 0 0);
+        display: flex;
+        flex-direction: column;
+    }
+    .title {
+        font-size: xx-large;
+        font-weight: 700;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .explanation{
+        flex-direction: column;
+        display: flex;
+    }
+    .main{
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 56rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding:2rem;
+    }
+    caption{
+        padding:1rem;
+        font-size: x-large;
+        font-weight: 600;
+    }
+    th {
+        border: 5px;
+        border-width: 2px;
+        border-color: black;
+        background-color: white;
+        padding:1rem;
+        border-radius: 0.5rem;
+        box-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    }
+    td {
+        padding:1rem;
+        background-color: white;
+        border-radius: 0.5rem;
+        text-align: center;
+        box-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    }
+    table{
+        border-collapse: separate;
+    }
+</style>
+</html>
