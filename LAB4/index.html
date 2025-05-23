@@ -15,12 +15,18 @@
     </div>
   </body>
 <script>
-  async function getMovieData(){
-    const movieData = await fetch('file:///Users/jhyunwoo/projects/yonsei-ip/LAB4/product.json')
-            .then(response => response.json())
-            .catch(error => console.error('Error fetching movie data:', error));
-    console.log(movieData);
-  }
-    getMovieData();
+  fetch('./product.json')
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            console.log(data);
+          })
+          .catch(error => {
+            console.error('Fetch error:', error);
+          });
 </script>
 </html>
