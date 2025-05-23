@@ -19,16 +19,46 @@
       </form>
     </div>
     <div class="search-results">
-      <div class="movie-filter"></div>
-      <div class="movie-list"></div>
+      <div class="movie-filter">
+        <form>
+          <input class="movie-filter-order-by"/>
+        </form>
+      </div>
+      <div>
+        <div class="movie-list"></div>
+        <div class="infinite-scroll-trigger"></div>
+      </div>
     </div>
   </body>
   <script>
-    let movieData = [];
+    let movieData = []
 
     const params = new URLSearchParams(window.location.search);
 
-    const keyword = params.get('keyword'); // "현우"
+    const keyword = params.get('keyword');
+    const orderBy = params.get('orderBy');
+
+    if(keyword){
+        document.querySelector(".search-input").value = keyword;
+    }
+    if(orderBy){
+        document.querySelector(".movie-filter-order-by").value = orderBy;
+    }
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          addMovies()
+          const parent = document.querySelector('.movie-list');
+          const childCount = parent.children.length;
+
+          console.log(`${childCount}`);
+        }
+      });
+    });
+
+    const target = document.querySelector('.infinite-scroll-trigger');
+    observer.observe(target);
 
     function createMovieItem(movie){
       return `<div class="movie-item">
@@ -43,6 +73,16 @@
               </div>`
     }
 
+    function addMovies(){
+      const tagetMovies = movieData.splice(0,20)
+      document.querySelector(".movie-list").innerHTML = document.querySelector(".movie-list").innerHTML + tagetMovies
+              .slice(0, 20)
+              .map(
+                      (movie) => createMovieItem(movie),
+              )
+              .join("");
+    }
+
     fetch("./product.json")
       .then((response) => {
         if (!response.ok) {
@@ -52,21 +92,14 @@
       })
       .then((data) => {
         movieData = data;
-        console.log(keyword);
         if(keyword){
-            movieData = movieData.filter((movie) => {
-                return (
-                movie?.title?.includes(keyword) ||
-                movie?.overview.includes(keyword)
-                );
-            });
+          movieData = movieData.filter((movie) => {
+            return (
+                    JSON.stringify(movie).toLowerCase().replaceAll(" ", "").includes(keyword.replaceAll(" ", "").toLowerCase())
+            );
+          });
         }
-        document.querySelector(".movie-list").innerHTML = movieData
-          .slice(0, 20)
-          .map(
-            (movie) => createMovieItem(movie),
-          )
-          .join("");
+        addMovies();
       })
       .catch((error) => {
         console.error("Fetch error:", error);
