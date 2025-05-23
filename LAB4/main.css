@@ -15,18 +15,18 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-    gap: 1rem;
+  gap: 1rem;
 }
 
 .search-input {
   width: 100%;
   border-radius: 10px;
   padding: 10px;
-    outline: none;
-    border: 2px solid oklch(52.7% 0.154 150.069);
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
+  outline: none;
+  border: 2px solid oklch(52.7% 0.154 150.069);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
 .search-input:focus {
@@ -34,11 +34,59 @@
 }
 
 .search-submit-button {
-  padding: 12px;
   border-radius: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border:none;
-    background-color: oklch(26.6% 0.065 152.934);
-    color: white;
+  padding: 12px 20px;
+  border: none;
+  background-color: oklch(26.6% 0.065 152.934);
+  color: white;
+}
+.search-results {
+  width: 100%;
+  max-width: 1020px;
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.movie-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+}
+
+.movie-filter {
+  width: 33%;
+  background-color: oklch(98.4% 0.003 247.858);
+  height: 120px;
+}
+
+.movie-item {
+  display: flex;
+  flex-direction: column;
+  background-color: oklch(96.8% 0.007 247.896);
+  border-radius: 12px;
+  width: auto;
+}
+
+.movie-item-info {
+  padding: 0 12px;
+}
+
+.movie-item-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.movie-item-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2/3;
+  border-radius: 12px 12px 0 0;
+}
+
+.movie-item-poster {
+  object-fit: cover;
+  width: 100%;
+  border-radius: 12px;
 }

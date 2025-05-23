@@ -9,24 +9,67 @@
     <h1 class="title">Moogle</h1>
     <div>
       <form class="search-form">
-        <input type="text" class="search-input" placeholder="Enter keyword" name="keyword" />
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Enter keyword"
+          name="keyword"
+        />
         <button type="submit" class="search-submit-button">Search</button>
       </form>
     </div>
+    <div class="search-results">
+      <div class="movie-filter"></div>
+      <div class="movie-list"></div>
+    </div>
   </body>
-<script>
-  fetch('./product.json')
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-            return response.json();
-          })
-          .then(data => {
-            console.log(data);
-          })
-          .catch(error => {
-            console.error('Fetch error:', error);
-          });
-</script>
+  <script>
+    let movieData = [];
+
+    const params = new URLSearchParams(window.location.search);
+
+    const keyword = params.get('keyword'); // "현우"
+
+    function createMovieItem(movie){
+      return `<div class="movie-item">
+                <div class="movie-item-image">
+                   <img src="${movie?.poster_path}" alt="${movie?.title}" class="movie-item-poster" onerror="this.onerror=null; this.src='./poster-image-not-found.png';"/>
+                   </div>
+                <div class="movie-item-info">
+                <h2 class="movie-item-title">${movie.title}</h2>
+                <p>${movie.release_date}</p>
+                <p>${movie.vote_average}</p>
+                </div>
+              </div>`
+    }
+
+    fetch("./product.json")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        movieData = data;
+        console.log(keyword);
+        if(keyword){
+            movieData = movieData.filter((movie) => {
+                return (
+                movie?.title?.includes(keyword) ||
+                movie?.overview.includes(keyword)
+                );
+            });
+        }
+        document.querySelector(".movie-list").innerHTML = movieData
+          .slice(0, 20)
+          .map(
+            (movie) => createMovieItem(movie),
+          )
+          .join("");
+      })
+      .catch((error) => {
+        console.error("Fetch error:", error);
+      });
+  </script>
 </html>
