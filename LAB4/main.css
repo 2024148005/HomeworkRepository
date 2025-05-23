@@ -1,0 +1,44 @@
+.max-w-1020 {
+  max-width: 1020px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.search-form {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+    gap: 1rem;
+}
+
+.search-input {
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px;
+    outline: none;
+    border: 2px solid oklch(52.7% 0.154 150.069);
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+.search-input:focus {
+  border: 2px solid oklch(26.6% 0.065 152.934);
+}
+
+.search-submit-button {
+  padding: 12px;
+  border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border:none;
+    background-color: oklch(26.6% 0.065 152.934);
+    color: white;
+}

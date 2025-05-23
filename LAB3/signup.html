@@ -1,45 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up</title>
-    <link rel="stylesheet" type="text/css" href="main.css">
-</head>
-<body class="layout">
+    <link rel="stylesheet" type="text/css" href="main.css" />
+  </head>
+  <body class="layout">
     <div class="card">
-        <h1 class="pageTitle">Sign Up</h1>
-        <form>
-            <input type="text" placeholder="이름" autofocus required/>
-            <input type="date" placeholder="생년월일" required/>
-            <div>
-                <input name="gender" type="radio" value="male" id="male"/>
-            <label id="male">남자</label>
-            <input name="gender" type="radio" value="female" id="female"/>
-            <label id="female">여자</label>
-            </div>
-            <input type="number" step="1" min="1" max="4" placeholder="학년"/>
-
-            <input type="text" placeholder="아이디" required autocomplete="off"/>
-            <input type="password" placeholder="비밀번호" required/>
-            <input type="email" placeholder="이메일" required autocomplete="on"/>
-            <select required>
-                <option value="" disabled selected>보안질문을 선택하세요.</option>
-                <option value="1">다녔던 어린이집 이름은?</option>
-                <option value="2">가장 좋아하는 영화는?</option>
-                <option value="3">가장 좋아하는 노래는?</option>
-                <option value="4">가장 좋았던 여행지는?</option>
-            </select> 
-            <input type="text" placeholder="보안질문 답변" required/>
-            <button type="submit" class="submitButton">회원가입</button>
-        </form>
-        <div class="redirections">
-
-                <a href="index.html">Home</a>
-                <a href="login.html">Log In</a>
-                <a href="signup.html">Sign Up</a>
-
+      <h1 class="pageTitle">Sign Up</h1>
+      <form>
+        <input type="text" placeholder="이름" autofocus required />
+        <input type="date" placeholder="생년월일" required />
+        <div>
+          <input name="gender" type="radio" value="male" id="male" />
+          <label id="male">남자</label>
+          <input name="gender" type="radio" value="female" id="female" />
+          <label id="female">여자</label>
         </div>
+        <input type="number" step="1" min="1" max="4" placeholder="학년" />
+
+        <input type="text" placeholder="아이디" required autocomplete="off" />
+        <input type="password" placeholder="비밀번호" required />
+        <input type="email" placeholder="이메일" required autocomplete="on" />
+        <select required>
+          <option value="" disabled selected>보안질문을 선택하세요.</option>
+          <option value="1">다녔던 어린이집 이름은?</option>
+          <option value="2">가장 좋아하는 영화는?</option>
+          <option value="3">가장 좋아하는 노래는?</option>
+          <option value="4">가장 좋았던 여행지는?</option>
+        </select>
+        <input type="text" placeholder="보안질문 답변" required />
+        <button type="submit" class="submitButton">회원가입</button>
+      </form>
+      <div class="redirections">
+        <a href="index.html">Home</a>
+        <a href="login.html">Log In</a>
+        <a href="signup.html">Sign Up</a>
+      </div>
     </div>
-</body>
+  </body>
 </html>

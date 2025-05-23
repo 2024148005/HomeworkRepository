@@ -1,92 +1,96 @@
 .layout {
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: oklch(98.5% 0 0);
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: oklch(98.5% 0 0);
 }
 
 .pageTitle {
-    font-size: xx-large;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: xx-large;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-family:
+    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .card {
-    padding: 8px;
-    border-radius: 8px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
-    max-width: 600px;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  padding: 8px;
+  border-radius: 8px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow:
+    0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 .redirections {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin: 4px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 4px;
 }
 
 form {
- display: flex; 
- flex-direction: column;
- width: 300px;
- margin-left: auto;
- margin-right: auto;
- gap: 8px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 8px;
 }
 
 input {
-    font-size: large;
-    padding: 8px;
-    border-radius: 8px;
-    padding-left: 12px;
-    padding-right:12px;
-    outline: none;
-    border: 2px solid oklch(74.6% 0.16 232.661);
+  font-size: large;
+  padding: 8px;
+  border-radius: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  outline: none;
+  border: 2px solid oklch(74.6% 0.16 232.661);
 }
 
-select{
-    padding: 8px;
-    border-radius: 8px;
-    outline: none;
-    border-color: oklch(74.6% 0.16 232.661);
-    border: 2px solid oklch(74.6% 0.16 232.661);
+select {
+  padding: 8px;
+  border-radius: 8px;
+  outline: none;
+  border-color: oklch(74.6% 0.16 232.661);
+  border: 2px solid oklch(74.6% 0.16 232.661);
 }
 
 input:focus {
-    border-color: oklch(44.3% 0.11 240.79);
+  border-color: oklch(44.3% 0.11 240.79);
 }
 
 .submitButton {
-    padding: 8px;
-    border-radius: 32px;
-    background-color: oklch(68.5% 0.169 237.323);
-    color: white;
-    border: 0px;
-    font-size: large;
+  padding: 8px;
+  border-radius: 32px;
+  background-color: oklch(68.5% 0.169 237.323);
+  color: white;
+  border: 0px;
+  font-size: large;
 }
 
 .submitButton:hover {
-    background-color: oklch(50% 0.134 242.749);
+  background-color: oklch(50% 0.134 242.749);
 }
 
 a {
-    padding: 8px;
-    padding-left: 16px;
-    padding-right:16px;
-    border-radius: 32px;
-    color:white;
-    background-color: oklch(50% 0.134 242.749);
-    text-decoration: none;
+  padding: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 32px;
+  color: white;
+  background-color: oklch(50% 0.134 242.749);
+  text-decoration: none;
 }
