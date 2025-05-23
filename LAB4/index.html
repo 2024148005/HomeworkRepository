@@ -64,7 +64,9 @@
     </div>
     <div class="search-results">
       <div>
-        <div class="movie-list"></div>
+        <div class="movie-list">
+          <div class="loading">Loading movie data...</div>
+        </div>
         <div class="infinite-scroll-trigger"></div>
       </div>
     </div>
@@ -189,6 +191,10 @@
               .replaceAll(" ", "")
               .includes(keyword.replaceAll(" ", "").toLowerCase());
           });
+        }
+        const deleteLoadingTag = document.querySelector('.loading');
+        if (deleteLoadingTag) {
+          deleteLoadingTag.remove();
         }
         // 영화를 추가
         addMovies();

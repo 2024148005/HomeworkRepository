@@ -117,6 +117,18 @@
   border-radius: 12px;
 }
 
+.loading {
+  width: 100%;
+  background-color: oklch(96.8% 0.007 247.896);
+  padding: 10px;
+  font-size: x-large;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
 .layout {
   width: 100vw;
   display: flex;
