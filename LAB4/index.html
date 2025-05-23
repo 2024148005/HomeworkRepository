@@ -7,6 +7,11 @@
   </head>
   <body class="max-w-1020">
     <h1 class="title">Moogle</h1>
+    <div class="redirections">
+      <a href="index.html">Home</a>
+      <a href="login.html">Log In</a>
+      <a href="signup.html">Sign Up</a>
+    </div>
     <div>
       <form class="search-form">
         <input
@@ -15,15 +20,49 @@
           placeholder="Enter keyword"
           name="keyword"
         />
+        <div class="movie-filter">
+          <div class="filter-group">
+            <label
+              ><input
+                type="radio"
+                name="orderBy"
+                value="desc"
+                class="movie-filter-order-by"
+              />평점 내림차순</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="orderBy"
+                value="asc"
+                class="movie-filter-order-by"
+              />평점 오름차순</label
+            >
+          </div>
+          <div class="filter-group">
+            <label
+              ><input
+                type="radio"
+                name="budget"
+                value="desc"
+                class="movie-filter-budget"
+              />제작비 내림차순</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="budget"
+                value="asc"
+                class="movie-filter-budget"
+              />제작비 오름차순</label
+            >
+          </div>
+        </div>
+        <button type="reset" class="search-reset-button">Reset</button>
         <button type="submit" class="search-submit-button">Search</button>
       </form>
     </div>
     <div class="search-results">
-      <div class="movie-filter">
-        <form>
-          <input class="movie-filter-order-by"/>
-        </form>
-      </div>
       <div>
         <div class="movie-list"></div>
         <div class="infinite-scroll-trigger"></div>
@@ -31,58 +70,93 @@
     </div>
   </body>
   <script>
-    let movieData = []
+    // 영화 데이터를 저장하는 변수
+    let movieData = [];
 
+    // URL에서 params를 가져온다
     const params = new URLSearchParams(window.location.search);
 
-    const keyword = params.get('keyword');
-    const orderBy = params.get('orderBy');
+    // 검색 조건을 params에서 가져온다
+    const keyword = params.get("keyword");
+    const orderBy = params.get("orderBy");
+    const budget = params.get("budget");
 
-    if(keyword){
-        document.querySelector(".search-input").value = keyword;
+    // 만약 keyword, orderBy, budget가 있다면 input에 값을 넣는다
+    if (keyword) {
+      document.querySelector(".search-input").value = keyword;
     }
-    if(orderBy){
-        document.querySelector(".movie-filter-order-by").value = orderBy;
+    if (orderBy) {
+      document.querySelectorAll(".movie-filter-order-by").forEach((item) => {
+        if (item.value === orderBy) {
+          item.checked = true;
+        }
+      });
+    }
+    if (budget) {
+      document.querySelectorAll(".movie-filter-budget").forEach((item) => {
+        if (item.value === budget) {
+          item.checked = true;
+        }
+      });
     }
 
+    // 무한 스크롤 구현을 위해 IntersectionObserver를 사용한다
     const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          addMovies()
-          const parent = document.querySelector('.movie-list');
-          const childCount = parent.children.length;
-
-          console.log(`${childCount}`);
+          addMovies();
         }
       });
     });
 
-    const target = document.querySelector('.infinite-scroll-trigger');
+    const target = document.querySelector(".infinite-scroll-trigger");
     observer.observe(target);
 
-    function createMovieItem(movie){
+    // 영화 데이터를 통해 카드로 만들어 넣는 함수
+    function createMovieItem(movie) {
       return `<div class="movie-item">
                 <div class="movie-item-image">
+                                <div class="movie-overview">${movie.overview}</div>
+
                    <img src="${movie?.poster_path}" alt="${movie?.title}" class="movie-item-poster" onerror="this.onerror=null; this.src='./poster-image-not-found.png';"/>
                    </div>
                 <div class="movie-item-info">
                 <h2 class="movie-item-title">${movie.title}</h2>
-                <p>${movie.release_date}</p>
-                <p>${movie.vote_average}</p>
+                <p>Release Date: ${movie.release_date}</p>
+                <p>Rating: ${movie.vote_average}/10</p>
+                <p>Budget: $${Number(movie.budget).toLocaleString("en-US")}</p>
                 </div>
-              </div>`
+              </div>`;
     }
 
-    function addMovies(){
-      const tagetMovies = movieData.splice(0,20)
-      document.querySelector(".movie-list").innerHTML = document.querySelector(".movie-list").innerHTML + tagetMovies
-              .slice(0, 20)
-              .map(
-                      (movie) => createMovieItem(movie),
-              )
-              .join("");
+    // 무한 스크롤을 통해 다음 영화 데이터를 추가할 때 사용하는 함수
+    function addMovies() {
+      const tagetMovies = movieData.splice(0, 20);
+      document.querySelector(".movie-list").innerHTML =
+        document.querySelector(".movie-list").innerHTML +
+        tagetMovies
+          .slice(0, 20)
+          .map((movie) => createMovieItem(movie))
+          .join("");
+
+      // hover를 할 때 영화 줄거리를 보여주기
+      document.querySelectorAll(".movie-item-image").forEach((img) => {
+        img.addEventListener("mouseenter", (e) => {
+          const overview = e.target
+            .closest(".movie-item")
+            .querySelector(".movie-overview");
+          overview.style.visibility = "visible";
+        });
+        img.addEventListener("mouseleave", (e) => {
+          const overview = e.target
+            .closest(".movie-item")
+            .querySelector(".movie-overview");
+          overview.style.visibility = "hidden";
+        });
+      });
     }
 
+    // Fetch API를 사용해서 영화 데이터를 가져온다
     fetch("./product.json")
       .then((response) => {
         if (!response.ok) {
@@ -91,17 +165,36 @@
         return response.json();
       })
       .then((data) => {
+        // 영화 데이터 저장
         movieData = data;
-        if(keyword){
-          movieData = movieData.filter((movie) => {
-            return (
-                    JSON.stringify(movie).toLowerCase().replaceAll(" ", "").includes(keyword.replaceAll(" ", "").toLowerCase())
-            );
+        // 검색 조건이 있을 경우 필터링 진행
+        if (orderBy) {
+          movieData = movieData.sort((a, b) => {
+            return orderBy === "desc"
+              ? b.vote_average - a.vote_average
+              : a.vote_average - b.vote_average;
           });
         }
+        if (budget) {
+          movieData = movieData.sort((a, b) => {
+            return budget === "desc"
+              ? Number(b.budget) - Number(a.budget)
+              : Number(a.budget) - Number(b.budget);
+          });
+        }
+        if (keyword) {
+          movieData = movieData.filter((movie) => {
+            return JSON.stringify(movie)
+              .toLowerCase()
+              .replaceAll(" ", "")
+              .includes(keyword.replaceAll(" ", "").toLowerCase());
+          });
+        }
+        // 영화를 추가
         addMovies();
       })
       .catch((error) => {
+        // 오류 발생시 콘솔에 출력
         console.error("Fetch error:", error);
       });
   </script>
